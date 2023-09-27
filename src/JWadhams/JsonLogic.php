@@ -103,6 +103,9 @@ class JsonLogic
                 return $a;
             },
             'var' => function ($a = null, $default = null) use ($data) {
+                if (is_callable($data)) {
+                    return $data($a, $default);
+                }
                 if ($a === null or $a === "") {
                     return $data;
                 }
